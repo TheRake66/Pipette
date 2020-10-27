@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -32,6 +33,21 @@ namespace Pipette
 
 
         // ====================================================================
+        private void linkLabelAide_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // -------------------------------------
+            try
+            {
+                Process.Start("https://github.com/TheRake66/Pipette");
+            }
+            catch { }
+            // -------------------------------------
+        }
+        // ====================================================================
+
+
+
+        // ====================================================================
         private void changerCouleurRGB(object sender, KeyEventArgs e)
         {
             // -------------------------------------
@@ -47,6 +63,7 @@ namespace Pipette
             }
             // -------------------------------------
         }
+
         private void changerCouleurHex(object sender, KeyEventArgs e)
         {
             // -------------------------------------

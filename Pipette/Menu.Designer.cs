@@ -44,7 +44,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.numericUpDownB = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownG = new System.Windows.Forms.NumericUpDown();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.linkLabelAide = new System.Windows.Forms.LinkLabel();
             this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPipette)).BeginInit();
@@ -232,16 +232,17 @@
             this.numericUpDownG.TabIndex = 15;
             this.numericUpDownG.KeyDown += new System.Windows.Forms.KeyEventHandler(this.changerCouleurRGB);
             // 
-            // linkLabel1
+            // linkLabelAide
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(10, 420);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(41, 21);
-            this.linkLabel1.TabIndex = 14;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Aide";
+            this.linkLabelAide.AutoSize = true;
+            this.linkLabelAide.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabelAide.Location = new System.Drawing.Point(10, 420);
+            this.linkLabelAide.Name = "linkLabelAide";
+            this.linkLabelAide.Size = new System.Drawing.Size(41, 21);
+            this.linkLabelAide.TabIndex = 14;
+            this.linkLabelAide.TabStop = true;
+            this.linkLabelAide.Text = "Aide";
+            this.linkLabelAide.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelAide_LinkClicked);
             // 
             // label6
             // 
@@ -251,7 +252,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(32, 21);
             this.label6.TabIndex = 15;
-            this.label6.Text = "1.0";
+            this.label6.Text = "1.1";
             // 
             // Menu
             // 
@@ -259,7 +260,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(504, 451);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.linkLabelAide);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -299,7 +300,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDownB;
         private System.Windows.Forms.NumericUpDown numericUpDownG;
         private System.Windows.Forms.PictureBox pictureBoxBureau;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel linkLabelAide;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
     }
