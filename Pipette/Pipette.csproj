@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>aa.ico</ApplicationIcon>
+    <ApplicationIcon>icons8_color_dropper_96px.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aa.ico" />
+    <Content Include="icons8_color_dropper_96px.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

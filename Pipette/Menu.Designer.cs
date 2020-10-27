@@ -77,7 +77,7 @@
             0});
             this.numericUpDownR.Name = "numericUpDownR";
             this.numericUpDownR.Size = new System.Drawing.Size(50, 29);
-            this.numericUpDownR.TabIndex = 1;
+            this.numericUpDownR.TabIndex = 0;
             this.numericUpDownR.KeyDown += new System.Windows.Forms.KeyEventHandler(this.changerCouleurRGB);
             // 
             // label2
@@ -107,7 +107,7 @@
             this.textBoxHex.MaxLength = 6;
             this.textBoxHex.Name = "textBoxHex";
             this.textBoxHex.Size = new System.Drawing.Size(65, 29);
-            this.textBoxHex.TabIndex = 6;
+            this.textBoxHex.TabIndex = 3;
             this.textBoxHex.Text = "000000";
             this.textBoxHex.KeyDown += new System.Windows.Forms.KeyEventHandler(this.changerCouleurHex);
             // 
@@ -215,7 +215,7 @@
             0});
             this.numericUpDownB.Name = "numericUpDownB";
             this.numericUpDownB.Size = new System.Drawing.Size(50, 29);
-            this.numericUpDownB.TabIndex = 15;
+            this.numericUpDownB.TabIndex = 2;
             this.numericUpDownB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.changerCouleurRGB);
             // 
             // numericUpDownG
@@ -229,7 +229,7 @@
             0});
             this.numericUpDownG.Name = "numericUpDownG";
             this.numericUpDownG.Size = new System.Drawing.Size(50, 29);
-            this.numericUpDownG.TabIndex = 15;
+            this.numericUpDownG.TabIndex = 1;
             this.numericUpDownG.KeyDown += new System.Windows.Forms.KeyEventHandler(this.changerCouleurRGB);
             // 
             // linkLabelAide
@@ -239,7 +239,7 @@
             this.linkLabelAide.Location = new System.Drawing.Point(10, 420);
             this.linkLabelAide.Name = "linkLabelAide";
             this.linkLabelAide.Size = new System.Drawing.Size(41, 21);
-            this.linkLabelAide.TabIndex = 14;
+            this.linkLabelAide.TabIndex = 4;
             this.linkLabelAide.TabStop = true;
             this.linkLabelAide.Text = "Aide";
             this.linkLabelAide.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelAide_LinkClicked);
@@ -252,7 +252,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(32, 21);
             this.label6.TabIndex = 15;
-            this.label6.Text = "1.2";
+            this.label6.Text = "1.3";
             // 
             // Menu
             // 
