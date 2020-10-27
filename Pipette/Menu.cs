@@ -16,7 +16,7 @@ namespace Pipette
     public partial class Menu : Form
     {
         // -------------------------------------
-        Color leDernierPixel;
+        Bitmap leDernierScreen;
         // -------------------------------------
 
 
@@ -87,13 +87,13 @@ namespace Pipette
         private void changerCouleurImage(Color uneNewColor)
         {
             // -------------------------------------
-            Bitmap newImage = (Bitmap)this.pictureBoxBureau.BackgroundImage.Clone();
+            Bitmap newImage = (Bitmap)this.leDernierScreen.Clone();
 
-            for (int i = 0; i < this.pictureBoxBureau.BackgroundImage.Width; i++)
+            for (int i = 0; i < this.leDernierScreen.Width; i++)
             {
-                for (int j = 0; j < this.pictureBoxBureau.BackgroundImage.Height; j++)
+                for (int j = 0; j < this.leDernierScreen.Height; j++)
                 {
-                    if (newImage.GetPixel(i, j) == this.leDernierPixel)
+                    if (newImage.GetPixel(i, j) == this.leDernierScreen.GetPixel(25, 25))
                     {
                         newImage.SetPixel(i, j, uneNewColor); 
                     }
@@ -140,18 +140,20 @@ namespace Pipette
                 // Decoupe le bureau
                 Bitmap save = new Bitmap(50, 50, PixelFormat.Format32bppArgb);
                 Graphics.FromImage(save).DrawImage(desktop, -(m.X - 25), -(m.Y - 25));
-
-                this.leDernierPixel = save.GetPixel(25, 25);
+                Color lePixel = save.GetPixel(25, 25);
 
                 this.pictureBoxBureau.BackgroundImage = save;
-                this.numericUpDownR.Value = this.leDernierPixel.R;
-                this.numericUpDownG.Value = this.leDernierPixel.G;
-                this.numericUpDownB.Value = this.leDernierPixel.B;
+                this.leDernierScreen = (Bitmap)save.Clone();
+
+
+                this.numericUpDownR.Value = lePixel.R;
+                this.numericUpDownG.Value = lePixel.G;
+                this.numericUpDownB.Value = lePixel.B;
                 this.textBoxHex.Text =
-                    (this.leDernierPixel.R.ToString("x").Length < 2 ? "0" : "") + this.leDernierPixel.R.ToString("x").ToUpper() +
-                    (this.leDernierPixel.G.ToString("x").Length < 2 ? "0" : "") + this.leDernierPixel.G.ToString("x").ToUpper() +
-                    (this.leDernierPixel.B.ToString("x").Length < 2 ? "0" : "") + this.leDernierPixel.B.ToString("x").ToUpper();
-                this.panelCouleur.BackColor = this.leDernierPixel;
+                    (lePixel.R.ToString("x").Length < 2 ? "0" : "") + lePixel.R.ToString("x").ToUpper() +
+                    (lePixel.G.ToString("x").Length < 2 ? "0" : "") + lePixel.G.ToString("x").ToUpper() +
+                    (lePixel.B.ToString("x").Length < 2 ? "0" : "") + lePixel.B.ToString("x").ToUpper();
+                this.panelCouleur.BackColor = lePixel;
 
             });
 
