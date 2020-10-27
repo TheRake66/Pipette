@@ -139,7 +139,7 @@ namespace Pipette
             {
                 for (int j = 0; j < this.leDernierScreen.Height; j++)
                 {
-                    if (newImage.GetPixel(i, j) == this.leDernierScreen.GetPixel(25, 25))
+                    if (newImage.GetPixel(i, j) == this.leDernierScreen.GetPixel(this.zoom / 2, this.zoom / 2))
                     {
                         newImage.SetPixel(i, j, uneNewColor);
                     }
@@ -186,7 +186,7 @@ namespace Pipette
                 // Decoupe le bureau
                 Bitmap save = new Bitmap(this.zoom, this.zoom, PixelFormat.Format32bppArgb);
                 Graphics.FromImage(save).DrawImage(desktop, -(m.X - this.zoom / 2), -(m.Y - this.zoom / 2));
-                Color lePixel = save.GetPixel(25, 25);
+                Color lePixel = save.GetPixel(this.zoom / 2, this.zoom / 2);
 
                 this.pictureBoxBureau.BackgroundImage = save;
                 this.leDernierScreen = (Bitmap)save.Clone();
