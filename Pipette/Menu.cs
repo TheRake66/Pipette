@@ -81,6 +81,14 @@ namespace Pipette
                 this.panelCouleur.BackColor = lePixel;
                 changerCouleurImage(lePixel);
             }
+            else if (e.KeyCode != Keys.Delete &&
+                e.KeyCode != Keys.Return &&
+                e.KeyCode != Keys.Left &&
+                e.KeyCode != Keys.Right &&
+                !new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" }.Any(e.KeyCode.ToString().Contains))
+            {
+                e.SuppressKeyPress = true;
+            }
             // -------------------------------------
         }
 
@@ -128,7 +136,7 @@ namespace Pipette
             using (MemoryStream m = new MemoryStream(buffer)) bureau.Cursor = new Cursor(m);
             bureau.BackColor = Color.Black;
             bureau.TransparencyKey = Color.Blue;
-            bureau.Opacity = .50;
+            bureau.Opacity = 0.01;
             bureau.TopMost = true;
             bureau.Show(); // Afficher avant de déplacer
             bureau.Location = new Point(screenx, screeny);
@@ -144,7 +152,6 @@ namespace Pipette
 
                 this.pictureBoxBureau.BackgroundImage = save;
                 this.leDernierScreen = (Bitmap)save.Clone();
-
 
                 this.numericUpDownR.Value = lePixel.R;
                 this.numericUpDownG.Value = lePixel.G;
