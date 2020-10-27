@@ -148,8 +148,9 @@
             this.panelCouleur.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelCouleur.Location = new System.Drawing.Point(15, 215);
             this.panelCouleur.Name = "panelCouleur";
-            this.panelCouleur.Size = new System.Drawing.Size(71, 26);
+            this.panelCouleur.Size = new System.Drawing.Size(75, 26);
             this.panelCouleur.TabIndex = 11;
+            this.panelCouleur.Click += new System.EventHandler(this.panelCouleur_Click);
             // 
             // groupBox2
             // 
@@ -252,7 +253,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(32, 21);
             this.label6.TabIndex = 15;
-            this.label6.Text = "1.4";
+            this.label6.Text = "1.5";
             // 
             // Menu
             // 

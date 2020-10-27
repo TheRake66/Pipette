@@ -17,6 +17,7 @@ namespace Pipette
     {
         // -------------------------------------
         Bitmap leDernierScreen;
+        int zoom = 50;
         // -------------------------------------
 
 
@@ -26,6 +27,7 @@ namespace Pipette
         {
             // -------------------------------------
             InitializeComponent();
+            this.leDernierScreen = new Bitmap(this.pictureBoxBureau.Width, this.pictureBoxBureau.Height);
             // -------------------------------------
         }
         // ====================================================================
@@ -48,16 +50,33 @@ namespace Pipette
 
 
         // ====================================================================
+        private void panelCouleur_Click(object sender, EventArgs e)
+        {
+
+            ColorDialog diag = new ColorDialog();
+            diag.AllowFullOpen = true;
+            diag.Color = this.panelCouleur.BackColor;
+            if (diag.ShowDialog() == DialogResult.OK)
+            {
+                Color lePixel = diag.Color;
+                changerUpdown(lePixel);
+                changerTexbox(lePixel);
+                this.panelCouleur.BackColor = lePixel;
+                changerCouleurImage(lePixel);
+            }
+        }
+        // ====================================================================
+
+
+
+        // ====================================================================
         private void changerCouleurRGB(object sender, KeyEventArgs e)
         {
             // -------------------------------------
             if (e.KeyCode == Keys.Enter)
             {
                 Color lePixel = Color.FromArgb((int)this.numericUpDownR.Value, (int)this.numericUpDownG.Value, (int)this.numericUpDownB.Value);
-                this.textBoxHex.Text =
-                    (lePixel.R.ToString("x").Length < 2 ? "0" : "") + lePixel.R.ToString("x").ToUpper() +
-                    (lePixel.G.ToString("x").Length < 2 ? "0" : "") + lePixel.G.ToString("x").ToUpper() +
-                    (lePixel.B.ToString("x").Length < 2 ? "0" : "") + lePixel.B.ToString("x").ToUpper();
+                changerTexbox(lePixel);
                 this.panelCouleur.BackColor = lePixel;
                 changerCouleurImage(lePixel);
             }
@@ -75,9 +94,7 @@ namespace Pipette
                     Convert.ToInt32(lesHex[0].ToString() + lesHex[1], 16),
                     Convert.ToInt32(lesHex[2].ToString() + lesHex[3], 16),
                     Convert.ToInt32(lesHex[4].ToString() + lesHex[5], 16));
-                this.numericUpDownR.Value = lePixel.R;
-                this.numericUpDownG.Value = lePixel.G;
-                this.numericUpDownB.Value = lePixel.B;
+                changerUpdown(lePixel);
                 this.panelCouleur.BackColor = lePixel;
                 changerCouleurImage(lePixel);
             }
@@ -91,7 +108,28 @@ namespace Pipette
             }
             // -------------------------------------
         }
+        // ====================================================================
 
+
+
+        // ====================================================================
+        private void changerUpdown(Color lePixel)
+        {
+            // -------------------------------------
+            this.numericUpDownR.Value = lePixel.R;
+            this.numericUpDownG.Value = lePixel.G;
+            this.numericUpDownB.Value = lePixel.B;
+            // -------------------------------------
+        }
+        private void changerTexbox(Color lePixel)
+        {
+            // -------------------------------------
+            this.textBoxHex.Text =
+                (lePixel.R.ToString("x").Length < 2 ? "0" : "") + lePixel.R.ToString("x").ToUpper() +
+                (lePixel.G.ToString("x").Length < 2 ? "0" : "") + lePixel.G.ToString("x").ToUpper() +
+                (lePixel.B.ToString("x").Length < 2 ? "0" : "") + lePixel.B.ToString("x").ToUpper();
+            // -------------------------------------
+        }
         private void changerCouleurImage(Color uneNewColor)
         {
             // -------------------------------------
@@ -103,7 +141,7 @@ namespace Pipette
                 {
                     if (newImage.GetPixel(i, j) == this.leDernierScreen.GetPixel(25, 25))
                     {
-                        newImage.SetPixel(i, j, uneNewColor); 
+                        newImage.SetPixel(i, j, uneNewColor);
                     }
                 }
             }
@@ -146,20 +184,15 @@ namespace Pipette
             bureau.MouseMove += new MouseEventHandler((s, m) =>
             {
                 // Decoupe le bureau
-                Bitmap save = new Bitmap(50, 50, PixelFormat.Format32bppArgb);
-                Graphics.FromImage(save).DrawImage(desktop, -(m.X - 25), -(m.Y - 25));
+                Bitmap save = new Bitmap(this.zoom, this.zoom, PixelFormat.Format32bppArgb);
+                Graphics.FromImage(save).DrawImage(desktop, -(m.X - this.zoom / 2), -(m.Y - this.zoom / 2));
                 Color lePixel = save.GetPixel(25, 25);
 
                 this.pictureBoxBureau.BackgroundImage = save;
                 this.leDernierScreen = (Bitmap)save.Clone();
 
-                this.numericUpDownR.Value = lePixel.R;
-                this.numericUpDownG.Value = lePixel.G;
-                this.numericUpDownB.Value = lePixel.B;
-                this.textBoxHex.Text =
-                    (lePixel.R.ToString("x").Length < 2 ? "0" : "") + lePixel.R.ToString("x").ToUpper() +
-                    (lePixel.G.ToString("x").Length < 2 ? "0" : "") + lePixel.G.ToString("x").ToUpper() +
-                    (lePixel.B.ToString("x").Length < 2 ? "0" : "") + lePixel.B.ToString("x").ToUpper();
+                changerUpdown(lePixel);
+                changerTexbox(lePixel);
                 this.panelCouleur.BackColor = lePixel;
 
             });
