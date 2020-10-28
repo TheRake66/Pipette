@@ -97,6 +97,7 @@ namespace Pipette
                 changerUpdown(lePixel);
                 this.panelCouleur.BackColor = lePixel;
                 changerCouleurImage(lePixel);
+                Clipboard.SetData(DataFormats.Text, (Object)("#" + this.textBoxHex.Text));
             }
             else if (e.KeyCode != Keys.Delete &&
                 e.KeyCode != Keys.Return &&
@@ -128,6 +129,7 @@ namespace Pipette
                 (lePixel.R.ToString("x").Length < 2 ? "0" : "") + lePixel.R.ToString("x").ToUpper() +
                 (lePixel.G.ToString("x").Length < 2 ? "0" : "") + lePixel.G.ToString("x").ToUpper() +
                 (lePixel.B.ToString("x").Length < 2 ? "0" : "") + lePixel.B.ToString("x").ToUpper();
+            Clipboard.SetData(DataFormats.Text, (Object)("#" + this.textBoxHex.Text));
             // -------------------------------------
         }
         private void changerCouleurImage(Color uneNewColor)
@@ -156,6 +158,7 @@ namespace Pipette
         private void pictureBoxPipette_Click(object sender, EventArgs e)
         {
             // -------------------------------------
+
             // Récupère tous les écrans
             int screenx = SystemInformation.VirtualScreen.Left;
             int screeny = SystemInformation.VirtualScreen.Top;
@@ -176,7 +179,10 @@ namespace Pipette
             bureau.TransparencyKey = Color.Blue;
             bureau.Opacity = 0.01;
             bureau.TopMost = true;
+
+            this.pictureBoxPipette.Visible = false;
             bureau.Show(); // Afficher avant de déplacer
+
             bureau.Location = new Point(screenx, screeny);
             bureau.Size = new Size(screenw, screenh);
 
@@ -194,10 +200,13 @@ namespace Pipette
                 changerUpdown(lePixel);
                 changerTexbox(lePixel);
                 this.panelCouleur.BackColor = lePixel;
-
             });
 
-            bureau.Click += new EventHandler((s, m) => { bureau.Close(); });
+            bureau.Click += new EventHandler((s, m) =>
+            {
+                bureau.Close();
+                this.pictureBoxPipette.Visible = true;
+            });
             // -------------------------------------
         }
         // ====================================================================

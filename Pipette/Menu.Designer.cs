@@ -253,7 +253,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(32, 21);
             this.label6.TabIndex = 15;
-            this.label6.Text = "1.5";
+            this.label6.Text = "1.6";
             // 
             // Menu
             // 
