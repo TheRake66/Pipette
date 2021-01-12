@@ -50,20 +50,18 @@ namespace Pipette
 
 
         // ====================================================================
-        private void panelCouleur_Click(object sender, EventArgs e)
+        private void copyToClipBoard()
         {
-
-            ColorDialog diag = new ColorDialog();
-            diag.AllowFullOpen = true;
-            diag.Color = this.panelCouleur.BackColor;
-            if (diag.ShowDialog() == DialogResult.OK)
+            // -------------------------------------
+            try
             {
-                Color lePixel = diag.Color;
-                changerUpdown(lePixel);
-                changerTexbox(lePixel);
-                this.panelCouleur.BackColor = lePixel;
-                changerCouleurImage(lePixel);
+                Clipboard.SetData(DataFormats.Text, (Object)("#" + this.textBoxHex.Text));
             }
+            catch
+            {
+                MessageBox.Show("Impossible de copier le code hexadécimal dans le presse-papiers !", "Pipette", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            // -------------------------------------
         }
         // ====================================================================
 
@@ -77,8 +75,9 @@ namespace Pipette
             {
                 Color lePixel = Color.FromArgb((int)this.numericUpDownR.Value, (int)this.numericUpDownG.Value, (int)this.numericUpDownB.Value);
                 changerTexbox(lePixel);
-                this.panelCouleur.BackColor = lePixel;
                 changerCouleurImage(lePixel);
+                copyToClipBoard();
+                this.panelCouleur.BackColor = lePixel;
             }
             // -------------------------------------
         }
@@ -95,9 +94,9 @@ namespace Pipette
                     Convert.ToInt32(lesHex[2].ToString() + lesHex[3], 16),
                     Convert.ToInt32(lesHex[4].ToString() + lesHex[5], 16));
                 changerUpdown(lePixel);
-                this.panelCouleur.BackColor = lePixel;
                 changerCouleurImage(lePixel);
-                Clipboard.SetData(DataFormats.Text, (Object)("#" + this.textBoxHex.Text));
+                copyToClipBoard();
+                this.panelCouleur.BackColor = lePixel;
             }
             else if (e.KeyCode != Keys.Delete &&
                 e.KeyCode != Keys.Return &&
@@ -106,6 +105,24 @@ namespace Pipette
                 !new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" }.Any(e.KeyCode.ToString().Contains))
             {
                 e.SuppressKeyPress = true;
+            }
+            // -------------------------------------
+        }
+
+        private void panelCouleur_Click(object sender, EventArgs e)
+        {
+            // -------------------------------------
+            ColorDialog diag = new ColorDialog();
+            diag.AllowFullOpen = true;
+            diag.Color = this.panelCouleur.BackColor;
+            if (diag.ShowDialog() == DialogResult.OK)
+            {
+                Color lePixel = diag.Color;
+                changerUpdown(lePixel);
+                changerTexbox(lePixel);
+                changerCouleurImage(lePixel);
+                copyToClipBoard();
+                this.panelCouleur.BackColor = lePixel;
             }
             // -------------------------------------
         }
@@ -129,7 +146,6 @@ namespace Pipette
                 (lePixel.R.ToString("x").Length < 2 ? "0" : "") + lePixel.R.ToString("x").ToUpper() +
                 (lePixel.G.ToString("x").Length < 2 ? "0" : "") + lePixel.G.ToString("x").ToUpper() +
                 (lePixel.B.ToString("x").Length < 2 ? "0" : "") + lePixel.B.ToString("x").ToUpper();
-            Clipboard.SetData(DataFormats.Text, (Object)("#" + this.textBoxHex.Text));
             // -------------------------------------
         }
         private void changerCouleurImage(Color uneNewColor)
@@ -158,6 +174,7 @@ namespace Pipette
         private void pictureBoxPipette_Click(object sender, EventArgs e)
         {
             // -------------------------------------
+            this.pictureBoxPipette.Visible = false;
 
             // Récupère tous les écrans
             int screenx = SystemInformation.VirtualScreen.Left;
@@ -179,8 +196,6 @@ namespace Pipette
             bureau.TransparencyKey = Color.Blue;
             bureau.Opacity = 0.01;
             bureau.TopMost = true;
-
-            this.pictureBoxPipette.Visible = false;
             bureau.Show(); // Afficher avant de déplacer
 
             bureau.Location = new Point(screenx, screeny);
@@ -205,6 +220,8 @@ namespace Pipette
             bureau.Click += new EventHandler((s, m) =>
             {
                 bureau.Close();
+
+                copyToClipBoard();
                 this.pictureBoxPipette.Visible = true;
             });
             // -------------------------------------
