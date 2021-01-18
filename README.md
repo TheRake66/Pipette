@@ -7,3 +7,4 @@ __Version 1.4 :__ Textbox only hex + oppacite form noir
 __Version 1.5 :__ Color dialog sur panel couleur + reduction code  
 __Version 1.6 :__ Nouvelle cible + presse papier  
 __Version 1.7 :__ Correction : copie dans le presse papiers à chaque mouvement de souris  
+__Version 2.7 :__ Zoom + tolerance  

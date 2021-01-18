@@ -17,7 +17,6 @@ namespace Pipette
     {
         // -------------------------------------
         Bitmap leDernierScreen;
-        int zoom = 50;
         // -------------------------------------
 
 
@@ -126,6 +125,21 @@ namespace Pipette
             }
             // -------------------------------------
         }
+
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            // -------------------------------------
+            this.label7.Text = this.trackBar1.Value.ToString() + " sur " + this.trackBar1.Maximum;
+            // -------------------------------------
+        }
+
+        private void trackBar2_Scroll(object sender, EventArgs e)
+        {
+            // -------------------------------------
+            this.label9.Text = this.trackBar2.Value.ToString() + " sur " + this.trackBar2.Maximum;
+            // -------------------------------------
+        }
         // ====================================================================
 
 
@@ -151,15 +165,35 @@ namespace Pipette
         private void changerCouleurImage(Color uneNewColor)
         {
             // -------------------------------------
+            Color uneOldColor = this.leDernierScreen.GetPixel(this.trackBar2.Value / 2, this.trackBar2.Value / 2);
             Bitmap newImage = (Bitmap)this.leDernierScreen.Clone();
 
             for (int i = 0; i < this.leDernierScreen.Width; i++)
             {
                 for (int j = 0; j < this.leDernierScreen.Height; j++)
                 {
-                    if (newImage.GetPixel(i, j) == this.leDernierScreen.GetPixel(this.zoom / 2, this.zoom / 2))
+                    Color uneCurrentColor = newImage.GetPixel(i, j);
+                    int diffR = uneCurrentColor.R - uneOldColor.R;
+                    int diffG = uneCurrentColor.G - uneOldColor.G;
+                    int diffB = uneCurrentColor.B - uneOldColor.B;
+
+                    if ((Math.Abs(diffR) <= this.trackBar1.Value) &&
+                        (Math.Abs(diffG) <= this.trackBar1.Value) &&
+                        (Math.Abs(diffB) <= this.trackBar1.Value))
                     {
-                        newImage.SetPixel(i, j, uneNewColor);
+                        int newR = uneNewColor.R + diffR;
+                        if (newR < 0) newR = 0;
+                        if (newR > 255) newR = 255;
+
+                        int newG = uneNewColor.G + diffG;
+                        if (newG < 0) newG = 0;
+                        if (newG > 255) newG = 255;
+
+                        int newB = uneNewColor.B + diffB;
+                        if (newB < 0) newB = 0;
+                        if (newB > 255) newB = 255;
+
+                        newImage.SetPixel(i, j, Color.FromArgb(uneCurrentColor.A, newR, newG, newB));
                     }
                 }
             }
@@ -205,9 +239,18 @@ namespace Pipette
             bureau.MouseMove += new MouseEventHandler((s, m) =>
             {
                 // Decoupe le bureau
-                Bitmap save = new Bitmap(this.zoom, this.zoom, PixelFormat.Format32bppArgb);
-                Graphics.FromImage(save).DrawImage(desktop, -(m.X - this.zoom / 2), -(m.Y - this.zoom / 2));
-                Color lePixel = save.GetPixel(this.zoom / 2, this.zoom / 2);
+                // 101 = max de trackbar zoom + 1 pour eviter le 0
+                Bitmap save = new Bitmap(
+                    this.trackBar2.Value, 
+                    this.trackBar2.Value, 
+                    PixelFormat.Format32bppArgb);
+                Graphics.FromImage(save).DrawImage(
+                    desktop, 
+                    -(m.X - this.trackBar2.Value / 2), 
+                    -(m.Y - this.trackBar2.Value / 2));
+                Color lePixel = save.GetPixel(
+                    this.trackBar2.Value / 2,
+                    this.trackBar2.Value / 2);
 
                 this.pictureBoxBureau.BackgroundImage = save;
                 this.leDernierScreen = (Bitmap)save.Clone();

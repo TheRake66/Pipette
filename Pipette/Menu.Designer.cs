@@ -46,6 +46,13 @@
             this.numericUpDownG = new System.Windows.Forms.NumericUpDown();
             this.linkLabelAide = new System.Windows.Forms.LinkLabel();
             this.label6 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.trackBar2 = new System.Windows.Forms.TrackBar();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPipette)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -54,6 +61,9 @@
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownG)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -237,7 +247,7 @@
             // 
             this.linkLabelAide.AutoSize = true;
             this.linkLabelAide.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabelAide.Location = new System.Drawing.Point(10, 420);
+            this.linkLabelAide.Location = new System.Drawing.Point(12, 656);
             this.linkLabelAide.Name = "linkLabelAide";
             this.linkLabelAide.Size = new System.Drawing.Size(41, 21);
             this.linkLabelAide.TabIndex = 4;
@@ -249,17 +259,97 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(465, 420);
+            this.label6.Location = new System.Drawing.Point(460, 656);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(32, 21);
             this.label6.TabIndex = 15;
-            this.label6.Text = "1.7";
+            this.label6.Text = "2.7";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label9);
+            this.groupBox4.Controls.Add(this.trackBar2);
+            this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Controls.Add(this.trackBar1);
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(30, 430);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(445, 200);
+            this.groupBox4.TabIndex = 20;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Paramètres";
+            // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(268, 160);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(158, 21);
+            this.label9.TabIndex = 26;
+            this.label9.Text = "60 sur 100";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // trackBar2
+            // 
+            this.trackBar2.Location = new System.Drawing.Point(106, 112);
+            this.trackBar2.Maximum = 100;
+            this.trackBar2.Minimum = 1;
+            this.trackBar2.Name = "trackBar2";
+            this.trackBar2.Size = new System.Drawing.Size(320, 45);
+            this.trackBar2.TabIndex = 25;
+            this.trackBar2.TickFrequency = 10;
+            this.trackBar2.Value = 40;
+            this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(18, 117);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(58, 21);
+            this.label10.TabIndex = 24;
+            this.label10.Text = "Zoom :";
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(268, 78);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(158, 21);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "30 sur 255";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(106, 30);
+            this.trackBar1.Maximum = 255;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(320, 45);
+            this.trackBar1.TabIndex = 22;
+            this.trackBar1.TickFrequency = 10;
+            this.trackBar1.Value = 30;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(18, 35);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(82, 21);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Tolérance :";
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 451);
+            this.ClientSize = new System.Drawing.Size(504, 686);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.linkLabelAide);
             this.Controls.Add(this.groupBox3);
@@ -280,6 +370,10 @@
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownG)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,6 +398,13 @@
         private System.Windows.Forms.LinkLabel linkLabelAide;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TrackBar trackBar2;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Label label8;
     }
 }
 
